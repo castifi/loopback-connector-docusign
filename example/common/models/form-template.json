@@ -1,0 +1,45 @@
+{
+  "name": "form_template",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title":{
+      "type": "string",
+      "required": true
+    },
+    "preview": {
+      "type": "string"
+    },
+    "file": {
+      "type":"string"
+    },
+    "docusign_template_id": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "methods": {
+    "send": {
+      "accepts": [
+        {
+          "arg": "to",
+          "type" :"array",
+          "required": false
+        }
+      ],
+      "returns": {
+        "arg": "sent",
+        "type": "boolean"
+      },
+      "http": {
+        "path": "/send",
+        "verb": "post"
+      },
+      "isStatic": false,
+      "description": "Send form to signing user's primary email"
+    }
+  }
+}
