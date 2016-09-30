@@ -1,4 +1,4 @@
-import { ILoopbackConnector, DataSource } from '../../custom-typings';
+import { ILoopbackConnector, DataSource } from './custom-typings';
 import * as Docusign from 'docusign-esign';
 import { LoginAccount } from 'docusign-esign';
 

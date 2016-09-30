@@ -1,4 +1,4 @@
-const docusign_1 = require('../connectors/docusign');
+const DocusignConnector = require('../../build/');
 
 module.exports = {
   db: {
@@ -7,7 +7,7 @@ module.exports = {
   },
   docusign: {
     name: 'docusign',
-    connector: docusign_1.DocusignConnector,
+    connector: DocusignConnector.DocusignConnector,
     integrator_key: process.env.DOCUSIGN_INTEGRATOR_KEY,
     email: process.env.DOCUSIGN_EMAIL,
     password: process.env.DOCUSIGN_PASSWORD,

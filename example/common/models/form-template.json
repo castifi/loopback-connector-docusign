@@ -10,12 +10,6 @@
       "type": "string",
       "required": true
     },
-    "preview": {
-      "type": "string"
-    },
-    "file": {
-      "type":"string"
-    },
     "docusign_template_id": {
       "type": "string"
     }
