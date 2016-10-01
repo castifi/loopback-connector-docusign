@@ -4,6 +4,8 @@ const Loopback = require('loopback');
 const LoopbackBoot = require('loopback-boot');
 const app = module.exports = Loopback();
 
+const DocusignConnector = require('../../build');
+
 app.start = () => {
   // start the web server
   return app.listen(() => {
@@ -26,11 +28,18 @@ LoopbackBoot(app, {
   if (err) {
     throw err;
   }
+
+  console.log('Hello world');
+
   const DataSource = require('loopback-datasource-juggler').DataSource;
-  const dsSendGrid = new DataSource('loopback-connector-sendgrid', {
-    api_key: process.env.SENDGRID_KEY
+  const dsDocusign = new DataSource(DocusignConnector, {
+    integrator_key: process.env.DOCUSIGN_INTEGRATOR_KEY,
+    email: process.env.DOCUSIGN_EMAIL,
+    password: process.env.DOCUSIGN_PASSWORD,
+    env: process.env.DOCUSIGN_ENV
   });
-  Loopback.Email.attachTo(dsSendGrid);
+  Loopback.Docusign.attachTo(dsDocusign);
+
   // start the server if `$ node server.js`
   if (require.main === module) {
     app.start();

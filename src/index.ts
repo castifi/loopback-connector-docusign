@@ -70,8 +70,10 @@ export class DocusignConnector {
     return callback();
   }
 
+  DataAccessObject = Docusign;
+
   sendTemplatedDocument (template: {id: string}, recipient: IRecipient, message: {subject: string}): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       // create a new envelope object that we will manage the signature request through
       let envDef = new Docusign.EnvelopeDefinition();
       envDef.setEmailSubject(message.subject);
