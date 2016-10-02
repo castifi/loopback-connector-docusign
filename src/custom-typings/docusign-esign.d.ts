@@ -19,6 +19,21 @@ declare module 'docusign-esign' {
       setTemplateId (id: string): void;
       setTemplateRoles (roles: TemplateRole[]): void;
       setStatus (status: string | 'sent'): void;
+      setRecipients (recipents: Recipients): void;
+      getRecipients (): Recipients;
+    }
+    class Recipients {
+      constructor ();
+
+      setSigners (signers: Signer[]): void;
+      getSigners (): Signer[];
+    }
+    class Signer {
+      constructor ();
+
+      setEmail (email: string): void;
+      setName (name: string): void;
+      setRecipientId (id: string): void;
     }
     class TemplateRole {
       constructor ();
@@ -26,10 +41,11 @@ declare module 'docusign-esign' {
       setRoleName (roleName: string): void;
       setName (name: string): void;
       setEmail (email: string): void;
+      setClientUserId (id: string): void;
     }
     class LoginAccount {
       name: string;
-      accountId: string | number;
+      accountId: string;
       accountIdGuid: any;
       baseUrl: string;
       isDefault: boolean;
@@ -70,7 +86,18 @@ declare module 'docusign-esign' {
     class EnvelopesApi {
       constructor ();
 
-      createEnvelope (accountId: any, envDef: EnvelopeDefinition, unknown: any, callback: (err: string, envelopeSummary: any, response: any) => void): void;
+      createEnvelope (accountId: any, envDef: EnvelopeDefinition, options: any, callback: (err: string, envelopeSummary: IEnvelopeSummary, response: any) => void): void;
+      createRecipientView (accountId: string, envelopeId: string, returnUrl: RecipientViewRequest, callback: (error: Error, viewUrl: IViewUrl, response) => void): void;
+    }
+    class RecipientViewRequest {
+      constructor ();
+
+      setReturnUrl (url: string);
+      setAuthenticationMethod (method: string | 'email');
+      setEmail (email: string);
+      setUserName (username: string);
+      setRecipientId (id: string);
+      setClientUserId (userId: string);
     }
     class Configuration {
       static default: {
@@ -79,6 +106,22 @@ declare module 'docusign-esign' {
     }
     class LoginInfo {
       getLoginAccounts (): LoginAccount[];
+    }
+
+    interface IEnvelopeSummary {
+      envelopeId: string;
+      errorCode?: string | 'RECIPIENTS_NOT_PROVIDED';
+      message: string;
+    }
+    interface IViewUrl {
+      constructFromObject (): void;
+      getUrl (): string;
+      setUrl (url: string): void;
+      toJson (): {[key: string]: any};
+
+      url: string;
+      errorCode?: string | 'UNKNOWN_ENVELOPE_RECIPIENT';
+      message: string;
     }
   }
 

@@ -31,14 +31,14 @@ LoopbackBoot(app, {
 
   console.log('Hello world');
 
-  const DataSource = require('loopback-datasource-juggler').DataSource;
-  const dsDocusign = new DataSource(DocusignConnector, {
-    integrator_key: process.env.DOCUSIGN_INTEGRATOR_KEY,
-    email: process.env.DOCUSIGN_EMAIL,
-    password: process.env.DOCUSIGN_PASSWORD,
-    env: process.env.DOCUSIGN_ENV
-  });
-  Loopback.Docusign.attachTo(dsDocusign);
+  // const DataSource = require('loopback-datasource-juggler').DataSource;
+  // const dsDocusign = new DataSource(DocusignConnector, {
+  //   integrator_key: process.env.DOCUSIGN_INTEGRATOR_KEY,
+  //   email: process.env.DOCUSIGN_EMAIL,
+  //   password: process.env.DOCUSIGN_PASSWORD,
+  //   env: process.env.DOCUSIGN_ENV
+  // });
+  // Loopback.Docusign.attachTo(dsDocusign);
 
   // start the server if `$ node server.js`
   if (require.main === module) {
