@@ -8,7 +8,8 @@
   },
   "scripts": {
     "build": "gulp build",
-    "lint": "gulp lint"
+    "lint": "gulp lint",
+    "prepublish": "gulp lint && gulp build"
   },
   "pre-commit": [
     "lint"
