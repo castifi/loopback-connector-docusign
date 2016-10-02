@@ -1,6 +1,6 @@
 # loopback-connector-docusign-example
 
-This is an example project using the Docusign Loopback connector. **It doesn't work right now**
+This is an example project using the Docusign Loopback connector.
 
 ## Running the example for yourself
 
